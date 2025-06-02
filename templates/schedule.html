@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ user }} 的排課表</title></head>
+<body>
+    <h2>{{ user }} 的排課表（可編輯）</h2>
+    <form method="POST">
+        <table border="1">
+            <tr>
+                <th>節次＼星期</th>
+                <th>一</th><th>二</th><th>三</th><th>四</th><th>五</th>
+            </tr>
+            {% for i in range(5) %}
+            <tr>
+                <td>第 {{ i+1 }} 節</td>
+                {% for j in range(5) %}
+                <td>
+                    <input type="text" name="cell_{{ i }}_{{ j }}" value="{{ schedule[i][j] }}">
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <input type="submit" value="儲存課表">
+    </form>
+    <p><a href="{{ url_for('logout') }}">登出</a></p>
+</body>
+</html>
